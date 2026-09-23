@@ -1,0 +1,75 @@
+Environment Setup & Configuration Assignment
+Student Name: Fatuma Aden Hilowle
+Date: September 23, 2026
+Course: Software Development Environment
+Section 1: Task 1 - Flutter & Dart Setup
+Environment Verification
+Flutter SDK Path: C:\src\flutter
+App Directory Created: my_first_app
+Conceptual Reflection: Hot Reload vs. Hot Restart
+Hot Reload: Injects updated code changes directly into the running Dart Virtual Machine (VM) without losing the current application state. It allows developers to instantly preview UI tweaks and minor logic updates within sub-seconds.
+Hot Restart: Fully destroys and rebuilds the Dart VM state, clearing memory and resetting app runtime back to its initial entry point (main()). It is required when modifying global variables, app initialization logic, or static fields.
+Section 2: Task 2 - MySQL Database Management
+SQL Script Executed
+-- Create Database
+CREATE DATABASE school;
+USE school;
+
+-- Create Table
+CREATE TABLE students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) UNIQUE NOT NULL,
+    enrolled_on DATE NOT NULL
+);
+
+-- Insert Sample Records
+INSERT INTO students (name, email, enrolled_on) 
+VALUES 
+('John Doe', 'john.doe@example.com', '2026-09-01'),
+('Jane Smith', 'jane.smith@example.com', '2026-09-15');
+
+-- Query to retrieve all records
+SELECT * FROM students;
+
+Security Reflection
+Connecting an application backend directly as the root user poses significant security risks. The root account possesses unrestricted administrative privileges (DROP databases, modify system settings, access all data across all databases). If the application suffers an SQL Injection vulnerability or if backend credentials leak, an attacker gains complete control over the entire database server.
+Least-Privileged Application User Configuration:
+-- Create a dedicated app user
+CREATE USER 'school_app_user'@'localhost' IDENTIFIED BY 'StrongPassword123!';
+
+-- Grant only necessary permissions on the school database
+GRANT SELECT, INSERT, UPDATE, DELETE ON school.* TO 'school_app_user'@'localhost';
+
+-- Apply changes
+FLUSH PRIVILEGES;
+
+Section 3: Task 3 - Python Virtual Environment & Dependency Isolation
+Terminal Execution Commands
+cd python_setup_lab
+python -m venv venv
+source venv/Scripts/activate
+pip install requests
+pip list
+pip freeze > requirements.txt
+
+
+Installed Package Verification Output 
+
+Package            Version
+------------------ ---------
+certifi            2026.7.22
+charset-normalizer 3.5.1
+idna               3.20
+pip                26.2.1
+requests           2.34.2
+urllib3            2.8.0
+
+Section 4: Task 4 - VS Code Workspace Configuration
+Verified Workspace Extensions
+Flutter
+Dart
+Python
+Pylance
+MySQL
+
